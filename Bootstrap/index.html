@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .card {
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-danger">
@@ -48,6 +95,25 @@
         </div>
     </nav>
 
+    <!-- Nuevo Hero Section -->
+    <div class="bg-primary text-white py-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold">Desarrollo Web Profesional</h1>
+                    <p class="lead">Creando soluciones digitales innovadoras y experiencias web únicas</p>
+                    <div class="d-flex gap-3">
+                        <a href="#contacto" class="btn btn-light btn-lg">Contáctame</a>
+                        <a href="#sobre-mi" class="btn btn-outline-light btn-lg">Conoce más</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://via.placeholder.com/600x400" class="img-fluid rounded shadow" alt="Hero image">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main class="container my-4">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="tarjetas">
             <div class="col">
@@ -55,9 +121,22 @@
                     <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&h=200&fit=crop&auto=format" class="card-img-top" alt="Laptop con código">
                     <div class="border-top border-danger border-4 mx-4"></div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Laptop 1</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Laptop 1</h5>
+                            <span class="badge bg-primary">Nuevo</span>
+                        </div>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,13 +265,30 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <form class="card border-0 shadow-sm p-4">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" id="nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <label for="asunto" class="form-label">Asunto</label>
+                        <select class="form-select" id="asunto" required>
+                            <option value="">Selecciona un asunto...</option>
+                            <option value="proyecto">Nuevo Proyecto</option>
+                            <option value="consulta">Consulta</option>
+                            <option value="otro">Otro</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="mensaje" class="form-label">Mensaje</label>
@@ -227,5 +323,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5491150624930?text=Hola,%20me%20interesa%20saber%20más%20sobre%20tus%20servicios" 
+       class="whatsapp-float" 
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Chatear por WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/767px-WhatsApp.svg.png" 
+             alt="WhatsApp Icon">
+    </a>
 </body>
 </html>
